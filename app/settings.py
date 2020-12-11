@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # APPS
+    'app',
+    'autenticacion',
     'products',
 ]
 
@@ -102,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-us'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'Europe/Madrid'
 

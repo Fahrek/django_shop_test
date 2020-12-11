@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *
+from .views import VistaRegistro, acceder, salir
 
 urlpatterns = [
     path('registro/', VistaRegistro.as_view(), name="registro"),

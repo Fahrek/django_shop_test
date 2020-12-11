@@ -30,6 +30,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def img_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+
     class Meta:
         db_table            = 'products'
         verbose_name        = 'Producto'

@@ -15,21 +15,21 @@ def acceder(request):
             if usuario is not None:
                 login(request, usuario)
                 messages.success(request, f"Bienvenid@ de nuevo {nombre_usuario}")
-                return redirect("oferta")
+                return redirect("listado_productos")
             else:
                 messages.success(request, "Los datos son incorrectos")
         else:
             messages.success(request, "Los datos son incorrectos")
 
     form = AuthenticationForm()
-    return render(request, "acceder.html", {"form": form})
+    return render(request, "autenticacion/acceder.html", {"form": form})
 
 
 class VistaRegistro(View):
     # noinspection PyMethodMayBeStatic
     def get(self, request):
         form = UserCreationForm()
-        return render(request, "registro.html", {"form": form})
+        return render(request, "autenticacion/registro.html", {"form": form})
 
     # noinspection PyMethodMayBeStatic
     def post(self, request):
@@ -39,11 +39,11 @@ class VistaRegistro(View):
             nombre_usuario = form.cleaned_data.get("username")
             messages.success(request, f"Bienvenid@ a la plataforma {nombre_usuario}")
             login(request, usuario)
-            return redirect("oferta")
+            return redirect("listado_productos")
         else:
             for msg in form.error_messages:
                 messages.error(request, form.error_messages[msg])
-            return render(request, "registro.html", {"form": form})
+            return render(request, "autenticacion/registro.html", {"form": form})
 
 
 def salir(request):
