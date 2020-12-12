@@ -5,21 +5,24 @@
 {% block title %} Tienda {% endblock %}
 
 {% block content %}
-    Total {{ cart_total_amount|money_format:"€" }}
+{#    Total {{ cart_total_amount|money_format:"€" }}#}
     <div class="row">
         <div class="col-9">
             <div class="row">
                 {% for product in products %}
                     <div class="col-md-3 col-sm-12 col-lg-4">
                         <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="{{ product.image.url | default_if_none:'#' }}" style="width:100%;" alt="{{ product.name }}">
+                            <img class="card-img-top" src="{{ product.image.url | default_if_none:'#' }}"
+                                 style="width:100%;" alt="{{ product.name }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ product.name }}</h5>
+                                <h5 class="card-title">{{ product.name  }}</h5>
                                 <p class="card-text">{{ product.excerpt }}</p>
-                                <p class="card-text">{{ product.price }}€</p>
+                                <p class="card-text">{{ product.price   }}€</p>
                             </div>
                             <div class="card-footer text-center">
-                                <a href="#" class="btn btn-success">Añadir al carrito</a>
+                                <a href="{% url 'cart:add_product' product.id %}" class="btn btn-success">
+                                    Añadir al carrito
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -27,7 +30,7 @@
             </div>
         </div>
         <div class="col-3">
-            {% comment %} Aquí va el widget de los productos que tiene el cliente en el carrito {% endcomment %}
+            {% include "cart/widget.html" %}
         </div>
     </div>
 {% endblock %}
