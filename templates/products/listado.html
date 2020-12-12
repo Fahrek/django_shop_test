@@ -5,7 +5,7 @@
 {% block title %} Tienda {% endblock %}
 
 {% block content %}
-    Total {{ 9|multiply:5|money_format:"€" }}
+    Total {{ cart_total_amount|money_format:"€" }}
     <div class="row">
         <div class="col-9">
             <div class="row">
