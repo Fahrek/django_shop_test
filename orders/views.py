@@ -56,3 +56,22 @@ def send_order_email(**kwargs):
     from_email = "andresgqjob@gmail.com"
     to = kwargs.get("user_email")
     send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+
+
+class OrderList(ListView):
+    model = Order
+    ordering = ['-id']
+    template_name = 'orders/listado.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()  # Obtenemos las consulta contra el modelo Order
+        return queryset.filter(user=self.request.user)  # Filtramos los pedidos por el usuario autenticado actualmente
+
+
+class OrderDetail(DetailView):
+    model = Order
+    template_name = 'orders/detalle.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
